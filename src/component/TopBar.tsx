@@ -3,13 +3,13 @@ import { useEffect } from "react";
 import { MdOutlineDarkMode, MdSunny } from "react-icons/md";
 
 type SetProjectProp = {
-    dark: boolean,
-    setDark: React.Dispatch<React.SetStateAction<boolean>>,
-    projectSelected: string,
-  setProjectSelected: React.Dispatch<React.SetStateAction<string>>
+  dark: boolean;
+  setDark: React.Dispatch<React.SetStateAction<boolean>>;
+  projectSelected: string;
+  onProjectChange: (project: string) => void;
 };
 
-export const TopBar: React.FC<SetProjectProp> = ({ dark, setDark, projectSelected, setProjectSelected }) => {
+export const TopBar: React.FC<SetProjectProp> = ({ dark, setDark, projectSelected, onProjectChange }) => {
 
   useEffect(() => {
     if (dark) {
@@ -32,9 +32,9 @@ export const TopBar: React.FC<SetProjectProp> = ({ dark, setDark, projectSelecte
         </span>
       </NavbarBrand>
       <Dropdown label={projectSelected} dismissOnClick={true}>
-        <DropdownItem onClick={() => setProjectSelected("Auth Page")}>Auth Page</DropdownItem>
-        <DropdownItem onClick={() => setProjectSelected("Pomodoro Timer")}>Pomodoro Timer</DropdownItem>
-        <DropdownItem onClick={() => setProjectSelected("OTP Verification")}>OTP Verification</DropdownItem>
+        <DropdownItem onClick={() => onProjectChange("Auth Page")}>Auth Page</DropdownItem>
+        <DropdownItem onClick={() => onProjectChange("Pomodoro Timer")}>Pomodoro Timer</DropdownItem>
+        <DropdownItem onClick={() => onProjectChange("OTP Verification")}>OTP Verification</DropdownItem>
       </Dropdown>
       <div
         role="button"

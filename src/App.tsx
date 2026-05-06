@@ -4,20 +4,28 @@ import { TopBar } from "./component/TopBar";
 import { LoginSignUp } from "./component/LoginSignUp";
 import { PomodoroTimer } from "./component/PomodoroTimer";
 import { OTPVerification } from "./component/OTPVerification";
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  useNavigate,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
 
 function App() {
-  const [projectSelected, setProjectSelected] = useState<string>("Auth Page");
   const [dark, setDark] = useState<boolean>(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
-  // Sync URL with project selection
-  useEffect(() => {
-    if (projectSelected === "Auth Page") navigate("/loginSignUp");
-    else if (projectSelected === "Pomodoro Timer") navigate("/pomodoroTimer");
-    else if (projectSelected === "OTP Verification") navigate("/otpVerification");
-  }, [projectSelected, navigate]);
+  const getProjectFromPath = (path: string) => {
+    if (path === "/pomodoroTimer") return "Pomodoro Timer";
+    if (path === "/otpVerification") return "OTP Verification";
+    return "Auth Page";
+  };
+
+  const projectSelected = getProjectFromPath(location.pathname);
 
   return (
     <div className="flex flex-col max-h-svh min-h-svh min-w-svw max-w-svw bg-slate-300 dark:bg-slate-900">
@@ -25,13 +33,33 @@ function App() {
         setDark={setDark}
         dark={dark}
         projectSelected={projectSelected}
-        setProjectSelected={setProjectSelected}
+        onProjectChange={(project) => {
+          if (project === "Auth Page") navigate("/loginSignUp");
+          else if (project === "Pomodoro Timer") navigate("/pomodoroTimer");
+          else if (project === "OTP Verification") navigate("/otpVerification");
+        }}
       />
+
       <Routes>
-        <Route path="*" element={<LoginSignUp projectSelected={projectSelected} />} />
-        <Route path="/loginSignUp" element={<LoginSignUp projectSelected={projectSelected} />} />
-        <Route path="/pomodoroTimer" element={<PomodoroTimer dark={dark} projectSelected={projectSelected} />} />
-        <Route path="/otpVerification" element={<OTPVerification dark={dark} projectSelected={projectSelected} />} />
+        <Route
+          path="/loginSignUp"
+          element={<LoginSignUp projectSelected={projectSelected} />}
+        />
+        <Route
+          path="/pomodoroTimer"
+          element={
+            <PomodoroTimer dark={dark} projectSelected={projectSelected} />
+          }
+        />
+        <Route
+          path="/otpVerification"
+          element={
+            <OTPVerification dark={dark} projectSelected={projectSelected} />
+          }
+        />
+
+        {/* ✅ Clean fallback */}
+        <Route path="*" element={<Navigate to="/loginSignUp" />} />
       </Routes>
     </div>
   );
