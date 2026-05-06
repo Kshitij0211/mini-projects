@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
-import "./App.css";
-import { TopBar } from "./component/TopBar";
-import { LoginSignUp } from "./component/LoginSignUp";
-import { PomodoroTimer } from "./component/PomodoroTimer";
-import { OTPVerification } from "./component/OTPVerification";
+import { useState } from "react";
 import {
   BrowserRouter,
+  Navigate,
   Route,
   Routes,
-  useNavigate,
   useLocation,
-  Navigate,
+  useNavigate,
 } from "react-router-dom";
+import "./App.css";
+import { LoginSignUp } from "./component/LoginSignUp";
+import { OTPVerification } from "./component/OTPVerification";
+import { PomodoroTimer } from "./component/PomodoroTimer";
+import { TopBar } from "./component/TopBar";
 
 function App() {
   const [dark, setDark] = useState<boolean>(false);
