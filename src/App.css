@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css?family=IBM%20Plex%20Sans%20Arabic:700|IBM%20Plex%20Sans%20Arabic:400");
+@import url("https://fonts.googleapis.com/css2?family=Readex+Pro:wght@160..700&display=swap");
+
+.authPage {
+  font-family: "IBM Plex Sans Arabic";
+}
+
+.pomodoroTimer {
+  font-family: "Readex Pro", sans-serif;
+}
+
+.rightSideImage {
+  border-radius: 1rem;
+}
+
+.rightSideClose {
+  border-top-right-radius: 1rem;
+  background-clip: content-box;
+}
+
+.otp-rightBox {
+  border-radius: 0.25rem;
+}
