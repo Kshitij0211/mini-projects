@@ -109,7 +109,6 @@ export const OTPVerification: React.FC<ProjectProp> = ({
                     className=""
                     style={{
                       textAlign: "end",
-                      important: true,
                       borderTopLeftRadius: 0,
                       borderBottomLeftRadius: 0,
                     }}

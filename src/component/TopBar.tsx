@@ -35,7 +35,6 @@ export const TopBar: React.FC<SetProjectProp> = ({ dark, setDark, projectSelecte
         <DropdownItem onClick={() => setProjectSelected("Auth Page")}>Auth Page</DropdownItem>
         <DropdownItem onClick={() => setProjectSelected("Pomodoro Timer")}>Pomodoro Timer</DropdownItem>
         <DropdownItem onClick={() => setProjectSelected("OTP Verification")}>OTP Verification</DropdownItem>
-        <DropdownItem>Sign out</DropdownItem>
       </Dropdown>
       <div
         role="button"
